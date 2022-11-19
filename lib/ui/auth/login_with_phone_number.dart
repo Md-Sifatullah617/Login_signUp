@@ -12,7 +12,7 @@ class LoginWithPhoneNumber extends StatefulWidget {
 }
 
 class _LoginWithPhoneNumberState extends State<LoginWithPhoneNumber> {
-  final bool loading = false;
+  bool loading = false;
   final auth = FirebaseAuth.instance;
   final phnController = TextEditingController();
   @override
@@ -38,11 +38,22 @@ class _LoginWithPhoneNumberState extends State<LoginWithPhoneNumber> {
             ),
             RoundButton(
                 title: "Verify",
+                loading: loading,
                 onTap: () {
+                  setState(() {
+                    loading = true;
+                  });
                   auth.verifyPhoneNumber(
                       phoneNumber: phnController.text,
-                      verificationCompleted: (_) {},
+                      verificationCompleted: (_) {
+                        setState(() {
+                          loading = false;
+                        });
+                      },
                       verificationFailed: (e) {
+                        setState(() {
+                          loading = false;
+                        });
                         Utils().toastMessage(e.toString());
                       },
                       codeSent: (String verificationId, int? token) {
@@ -52,8 +63,14 @@ class _LoginWithPhoneNumberState extends State<LoginWithPhoneNumber> {
                                 builder: (context) => VerifyNumber(
                                       verificationId: verificationId,
                                     )));
+                        setState(() {
+                          loading = false;
+                        });
                       },
                       codeAutoRetrievalTimeout: (e) {
+                        setState(() {
+                          loading = false;
+                        });
                         Utils().toastMessage(e.toString());
                       });
                 })
