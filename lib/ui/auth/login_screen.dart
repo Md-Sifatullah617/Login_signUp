@@ -6,6 +6,8 @@ import 'package:untitled/ui/auth/signup_screen.dart';
 import 'package:untitled/utils/utilis.dart';
 import 'package:untitled/widgets/rounded_button.dart';
 
+import 'login_with_phone_number.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -138,17 +140,21 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
                 const SizedBox(height: 30,),
-                Container(
-                  height: 50,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    border: Border.all(
-                      color: Colors.purple,
-                      width: 2.0,
-                    )
-                  ),
-                  child: const Center(
-                    child: Text("Login with Phone Number"),
+                InkWell(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const LoginWithPhoneNumber()));
+                  },
+                  child: Container(
+                    height: 50,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      border: Border.all(
+                        color: Colors.black,
+                      )
+                    ),
+                    child: const Center(
+                      child: Text("Login with Phone Number", style: TextStyle(fontSize: 15,color: Colors.purple),),
+                    ),
                   ),
                 )
               ],
