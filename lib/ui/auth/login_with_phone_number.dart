@@ -30,6 +30,7 @@ class _LoginWithPhoneNumberState extends State<LoginWithPhoneNumber> {
             ),
             TextFormField(
               controller: phnController,
+              keyboardType: TextInputType.phone,
               decoration:
                   const InputDecoration(hintText: "+880 123 - 456 - 7893"),
             ),
