@@ -38,7 +38,7 @@ class _LoginWithPhoneNumberState extends State<LoginWithPhoneNumber> {
               height: 50,
             ),
             RoundButton(
-                title: "Verify",
+                title: "Send Code",
                 loading: loading,
                 onTap: () {
                   setState(() {
