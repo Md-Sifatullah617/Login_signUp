@@ -42,7 +42,7 @@ class _VerifyNumberState extends State<VerifyNumber> {
             RoundButton(
                 title: "Verify",
                 loading: loading,
-                onTap: () {
+                onTap: () async {
                   setState(() {
                     loading = true;
                   });
@@ -50,7 +50,8 @@ class _VerifyNumberState extends State<VerifyNumber> {
                       verificationId: widget.verificationId,
                       smsCode: verificationCodeController.text.toString());
                   try{
-                    auth.signInWithCredential(credential);
+                    await auth.signInWithCredential(credential);
+                    // ignore: use_build_context_synchronously
                     Navigator.push(context, MaterialPageRoute(builder: (context)=> const PostScreen()));
                   }catch(e){
                     setState(() {
