@@ -46,6 +46,7 @@ class _LoginWithPhoneNumberState extends State<LoginWithPhoneNumber> {
                   });
                   auth.verifyPhoneNumber(
                       phoneNumber: phnController.text,
+                      timeout: const Duration(seconds: 60),
                       verificationCompleted: (_) {
                         setState(() {
                           loading = false;
